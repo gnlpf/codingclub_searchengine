@@ -3,6 +3,8 @@
 Das Projekt ist vom Coding-Club der Waldorfschule BB-SiFi.
 Hier wollen wir eine Suchmaschine bauen (einfache Version).
 
+Das Projekt orientiert sich (mehr oder weniger) an dem Udacity-Kurs "Computer Science Intro".
+
 ## Links:
 * [Udacity Kurs: Computer Science Intro](https://www.udacity.com/course/progress#!/c-cs101)
 * [Python Basics - CodeAcademy](http://www.codecademy.com/tracks/python)
