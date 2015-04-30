@@ -28,6 +28,7 @@ def getLinkFromIndex(htmlString):
     return url, end_quote
     
 
+
 def crawlPage(link):
     
     try:
@@ -53,13 +54,14 @@ def crawlPage(link):
         else:
             page = None
     
-    
     return 0
+
 
 
 def getLinkToPage():
     
     return "http://schneefisch.ddns.net/"
+
 
 
 def main():
@@ -72,6 +74,7 @@ def main():
     links = crawlPage(pageLink)
     
     return 0
+
 
 if __name__ == '__main__':
 	main()
