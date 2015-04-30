@@ -10,6 +10,7 @@ import numpy as np
 #from BeautifulSoup import BeautifulSoup
 
 def getLinkFromIndex(htmlString):
+    ''' diese methode finded den ersten Link in einem gegebenen String'''
     
     start_link = htmlString.find('<a href=')
     start_quote = htmlString.find('"', start_link)
@@ -17,7 +18,7 @@ def getLinkFromIndex(htmlString):
     
     # check if an occurence has been found
     if start_link == -1 or start_quote == -1 or end_quote == -1 :
-        return "", -1
+        return False, -1
         
     url = htmlString[start_quote+1:end_quote]
     
@@ -42,36 +43,39 @@ def crawlPage(link):
     except:
         page = "empty"
         return
-    print page
+        
+    # Speichere alle gefundenen Links in einer Variablen
+    linksList = []
     
-    
+    # mach eine schleife
+    # um alle Links in einer Website zu finden
     while page:
+        # finde den ersten Link in einem String:
         new_url, end_quote = getLinkFromIndex(page)
         
-        if new_url:
-            print new_url
+        if new_url and not end_quote == -1:
+            linksList.append(new_url)
             page = page[end_quote:]
         else:
             page = None
     
-    return 0
-
+    return linksList
 
 
 def getLinkToPage():
-    
-    return "http://schneefisch.ddns.net/"
-
+    ''' fragt nach einer url '''
+    return raw_input("Bitte gib eine URL ein:")    
 
 
 def main():
     
 #    start by asking for a link
     pageLink = getLinkToPage()
-    print "got page " + pageLink
+#    print "got page " + pageLink
  
  #   search this page for links
     links = crawlPage(pageLink)
+    print links
     
     return 0
 
