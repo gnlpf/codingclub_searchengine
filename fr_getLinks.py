@@ -7,7 +7,7 @@ Created on Thu Apr 30 07:31:36 2015
 
 import urllib2
 import numpy as np
-#from BeautifulSoup import BeautifulSoup
+from BeautifulSoup import BeautifulSoup
 
 def getLinkFromIndex(htmlString):
     ''' diese methode finded den ersten Link in einem gegebenen String'''
