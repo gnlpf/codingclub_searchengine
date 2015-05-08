@@ -13,15 +13,10 @@ def getLinkFromIndex(htmlString):
         
     print "start link"
     url = htmlString[start_quote+1:end_quote]
-    
-    # check if url is empty
-    if not url:
-        return url, -1
         
     return url, end_quote
 
 def crawlPage(link):
-    print link
     try:
         page = urllib2.urlopen(link).read()
         
@@ -35,14 +30,12 @@ def crawlPage(link):
     except:
         page = "empty"
         return
-#    print page
-    linksList = []
+    print page
     
     while page:
         new_url, end_quote = getLinkFromIndex(page)
         
         if end_quote != -1:
-            linksList.append(new_url)
             print new_url
             page = page[end_quote:]
         else:
@@ -51,27 +44,18 @@ def crawlPage(link):
     return 0
            
 def getLinkToPage():
-    ''' fragt nach einer url '''
-    return raw_input("Bitte gib eine URL ein:") 
-
+    return "http://ws-bb.de/"
+    
 
 def main():
     
 #    start by asking for a link
-    url = getLinkToPage()
-    
-    if url.find('http://') == -1 or url.find('https://') == -1:
-        url = "http://" + url
-       
-        
-      
-    print "got page " + url
+    pageLink = getLinkToPage()
+    print "got page " + pageLink
  
 #   search this page for links
-    links = crawlPage(url)
+    links = crawlPage(pageLink)
     
-    print links
-  
     return 0
 
 
