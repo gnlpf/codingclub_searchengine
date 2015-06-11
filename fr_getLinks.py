@@ -69,6 +69,8 @@ def getLinkToPage():
     
 def makeAbsoluteLink(link, origin):
     # TODO
+    # convert relative links, like "/kontakt.php"
+    # to an absolute link: "http://..../kontakt.php"
     return link
     
 
@@ -87,6 +89,13 @@ def main():
     while len(toCrawl) > 0:
         # get first entry of "toCrawl" list
         crawl = toCrawl.pop
+        
+        # TODO
+        # ensure that this link is not contained in the "crawled" list        
+        if crawl in crawled:
+            # continue with the next loop
+            continue
+        
         links = crawlPage(crawl)
         
         # put into "crawled" list
@@ -94,7 +103,9 @@ def main():
         
         # add new found links to "toCrawl" list
         for link in links:
-            toCrawl.append(makeAbsoluteLink(link, crawl))
+            # ensure that the link is not in the "crawled" list
+            if link not in crawled:
+                toCrawl.append(makeAbsoluteLink(link, crawl))
             
         #stop loop after .. iterations
         i += 1
