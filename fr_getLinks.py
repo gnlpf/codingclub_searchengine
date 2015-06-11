@@ -71,6 +71,31 @@ def makeAbsoluteLink(link, origin):
     # TODO
     # convert relative links, like "/kontakt.php"
     # to an absolute link: "http://..../kontakt.php"
+    stringpart = link.split('://')
+
+    # if link contains http or https then it is already an absolute link
+    if len(stringpart) > 1:
+        print link
+        return link
+        
+    splitOrigin = origin.split('://')
+
+    protocol = ''
+    domain = ''
+    path = ''
+    
+    if len(splitOrigin) > 1:
+        protocol = splitOrigin[0] + '://'
+        
+    print 'origin: '
+    print origin
+    print 'protocol:'
+    print protocol
+    print 'domain'
+    print domain
+    print 'path:'
+    print path
+
     return link
     
 
@@ -88,7 +113,7 @@ def main():
  #   search this page for links
     while len(toCrawl) > 0:
         # get first entry of "toCrawl" list
-        crawl = toCrawl.pop
+        crawl = toCrawl.pop()
         
         # TODO
         # ensure that this link is not contained in the "crawled" list        
