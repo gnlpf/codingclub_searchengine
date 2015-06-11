@@ -31,7 +31,6 @@ def getLinkFromIndex(htmlString):
 
 
 def crawlPage(link):
-    
     try:
         page = urllib2.urlopen(link).read()
     except urllib2.HTTPError, e:
@@ -85,8 +84,15 @@ def makeAbsoluteLink(link, origin):
     path = ''
     
     if len(splitOrigin) > 1:
-        protocol = splitOrigin[0] + '://'
+        protocol = splitOrigin[0]
         
+    domainAndPath = splitOrigin[1].split('/')
+    domain = domainAndPath[0]
+    
+    if len(domainAndPath) > 1:
+        path.join(domainAndPath[1:],'/')
+        
+    print '-------'
     print 'origin: '
     print origin
     print 'protocol:'
@@ -95,7 +101,12 @@ def makeAbsoluteLink(link, origin):
     print domain
     print 'path:'
     print path
+    print '--------'
 
+    link = protocol + '://' + domain
+    if len(path) > 1:
+        link = link + '/' + path
+        
     return link
     
 
@@ -131,6 +142,7 @@ def main():
             # ensure that the link is not in the "crawled" list
             if link not in crawled:
                 toCrawl.append(makeAbsoluteLink(link, crawl))
+                print makeAbsoluteLink(link, crawl)
             
         #stop loop after .. iterations
         i += 1
