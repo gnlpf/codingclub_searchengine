@@ -65,17 +65,41 @@ def crawlPage(link):
 def getLinkToPage():
     ''' fragt nach einer url '''
     return raw_input("Bitte gib eine URL ein:")    
-
+    
+    
+def makeAbsoluteLink(link, origin):
+    # TODO
+    return link
+    
 
 def main():
     
 #    start by asking for a link
-    pageLink = getLinkToPage()
+    toCrawl = []
+    crawled = []
+    toCrawl.append(getLinkToPage())
 #    print "got page " + pageLink
+    
+    maxPagesSearched = 100
+    i = 0
  
  #   search this page for links
-    links = crawlPage(pageLink)
-    print links
+    while len(toCrawl) > 0:
+        # get first entry of "toCrawl" list
+        crawl = toCrawl.pop
+        links = crawlPage(crawl)
+        
+        # put into "crawled" list
+        crawled.append(crawl)
+        
+        # add new found links to "toCrawl" list
+        for link in links:
+            toCrawl.append(makeAbsoluteLink(link, crawl))
+            
+        #stop loop after .. iterations
+        i += 1
+        if i >= maxPagesSearched:
+            break
     
     return 0
 
