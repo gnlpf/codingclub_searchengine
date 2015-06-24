@@ -5,6 +5,7 @@ Created on Wed Jun 24 18:57:44 2015
 @author: frosch
 """
 
+
 from Bird import Bird
 
 def main():
@@ -23,9 +24,11 @@ def main():
     print "****************"
     
     pinguin = Pinguin()
-    adler = Adler()
-    
     pinguin.tell_info()
+    
+    adler = Adler()
+    adler.setKindAndFood("Adler", "Kleine Kinder")
+    adler.setHome("Alpen")
     adler.tell_info()
 """
 

@@ -24,5 +24,16 @@ class Pinguin(Bird):
 class Adler(Bird):
     ''' Child-Klasse von "bird" '''
     
+    kind = "Adler"
+    food = "Kleine Kinder"
+    home = "Alpen"
+    
     def __init__(self):
-        Bird.__init__(self, "Adler", "Hasen", "Alpen")
+        pass
+    
+    def setKindAndFood(self, kind, food):
+        self.kind = kind
+        self.food = food
+        
+    def setHome(self, home):
+        self.home = home

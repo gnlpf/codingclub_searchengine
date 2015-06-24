@@ -14,4 +14,4 @@ class Bird:
         self.home = home
         
     def tell_info(self):
-        print "I am %s, I eat %s, and I come from %s" % (self.kind, self.food, self.home)
+        print "I am %s, I eat %s, and I come from the %s" % (self.kind, self.food, self.home)
