@@ -14,11 +14,11 @@ class Pinguin(Bird):
     def __init__(self):
         Bird.__init__(self, "Pinguin", "Fisch", "Antarktis")
         
-        
-        
-        
-        
-        
+    
+
+
+
+
 # mehrere Klassen können in einer Datei gemacht werden.
         
 class Adler(Bird):
