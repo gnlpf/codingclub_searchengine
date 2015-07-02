@@ -14,9 +14,14 @@ def add_full_name(path_to_csv, path_to_new_csv):
     #2) Write the data in the pandas dataFrame to a new csv file located at
     #path_to_new_csv
 
-    #WRITE YOUR CODE HERE
+
+    #WRITE YOUR CODE HERe
+    print "start parsing"
+    baseball = pandas.read_csv(path_to_csv)
+    print baseball['nameFirst']
+    
 
 if __name__ == "__main__":
-    input_filename =  "Master.csv"
+    input_filename =  "../Master.csv"
     output_filename = "output.csv"
     add_full_name(input_filename, output_filename)
