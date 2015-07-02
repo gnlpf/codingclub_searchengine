@@ -7,7 +7,7 @@ Created on Thu Apr 30 07:31:36 2015
 
 import urllib2
 import numpy as np
-#from BeautifulSoup import BeautifulSoup
+from BeautifulSoup import BeautifulSoup
 
 def getLinkFromIndex(htmlString):
     ''' diese methode finded den ersten Link in einem gegebenen String'''
@@ -31,7 +31,6 @@ def getLinkFromIndex(htmlString):
 
 
 def crawlPage(link):
-    
     try:
         page = urllib2.urlopen(link).read()
     except urllib2.HTTPError, e:
@@ -65,17 +64,90 @@ def crawlPage(link):
 def getLinkToPage():
     ''' fragt nach einer url '''
     return raw_input("Bitte gib eine URL ein:")    
+    
+    
+def makeAbsoluteLink(link, origin):
+    # TODO
+    # convert relative links, like "/kontakt.php"
+    # to an absolute link: "http://..../kontakt.php"
+    stringpart = link.split('://')
 
+    # if link contains http or https then it is already an absolute link
+    if len(stringpart) > 1:
+        print link
+        return link
+        
+    splitOrigin = origin.split('://')
+
+    protocol = ''
+    domain = ''
+    path = ''
+    
+    if len(splitOrigin) > 1:
+        protocol = splitOrigin[0]
+        
+    domainAndPath = splitOrigin[1].split('/')
+    domain = domainAndPath[0]
+    
+    if len(domainAndPath) > 1:
+        path.join(domainAndPath[1:],'/')
+        
+    print '-------'
+    print 'origin: '
+    print origin
+    print 'protocol:'
+    print protocol
+    print 'domain'
+    print domain
+    print 'path:'
+    print path
+    print '--------'
+
+    link = protocol + '://' + domain
+    if len(path) > 1:
+        link = link + '/' + path
+        
+    return link
+    
 
 def main():
     
 #    start by asking for a link
-    pageLink = getLinkToPage()
+    toCrawl = []
+    crawled = []
+    toCrawl.append(getLinkToPage())
 #    print "got page " + pageLink
+    
+    maxPagesSearched = 100
+    i = 0
  
  #   search this page for links
-    links = crawlPage(pageLink)
-    print links
+    while len(toCrawl) > 0:
+        # get first entry of "toCrawl" list
+        crawl = toCrawl.pop()
+        
+        # TODO
+        # ensure that this link is not contained in the "crawled" list        
+        if crawl in crawled:
+            # continue with the next loop
+            continue
+        
+        links = crawlPage(crawl)
+        
+        # put into "crawled" list
+        crawled.append(crawl)
+        
+        # add new found links to "toCrawl" list
+        for link in links:
+            # ensure that the link is not in the "crawled" list
+            if link not in crawled:
+                toCrawl.append(makeAbsoluteLink(link, crawl))
+                print makeAbsoluteLink(link, crawl)
+            
+        #stop loop after .. iterations
+        i += 1
+        if i >= maxPagesSearched:
+            break
     
     return 0
 

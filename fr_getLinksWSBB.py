@@ -7,12 +7,17 @@ Created on Thu Apr 30 07:31:36 2015
 
 import urllib2
 import numpy as np
-#from BeautifulSoup import BeautifulSoup
+from bs4 import BeautifulSoup
+#soup = BeautifulSoup(urllib2.urlopen("http://www.armax.de").read())
+#soup = BeautifulSoup("<html>data</html>")
 
 def findImages(string):
-    
-    start_link = string.find('<img src')
-    start_quote = string.find('"', start_link)
+    soup = BeautifulSoup(string)
+    print soup.body.img['src']
+
+    start_link = string.find('<img')
+    start_src = string.find('src=', start_link)
+    start_quote = string.find('"', start_src)
     end_quote = string.find('"', start_quote+1)
     
     if start_link == -1 or start_quote == -1 or end_quote == -1 :
@@ -54,24 +59,30 @@ def crawlPage(link):
     except urllib2.HTTPError, e:
         print 'A problem occured while loading the page [' + link + ']. Please try again. ' + e
         return
-    
+    except ValueError, e:
+        print 'false url: ' 
+        print e.message
+        return
+        
+    bildlist = []
     
     while page:
         new_url, end_quote = findImages(page)
         
         if new_url:
-            print new_url
+            bildlist.append(new_url)
             page = page[end_quote:]
         else:
             page = None
     
-    return 0
+    return bildlist
+    
 
 
 
 def getLinkToPage():
     
-    return "http://ws-bb.de/"
+    return raw_input("Bitte Link eigeben")
 
 
 
@@ -82,8 +93,8 @@ def main():
     print "got page " + pageLink
  
  #   search this page for links
-    links = crawlPage(pageLink)
-    
+    bildlist = crawlPage(pageLink)
+    print bildlist
     return 0
 
 
