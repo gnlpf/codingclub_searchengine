@@ -3,28 +3,8 @@ Created on 25.06.2015
 
 @author: hohausjs
 '''
-import urllib2
+# import urllib2
 from crawl import Crawl
-
-def getLinkFromIndex(htmlString):
-    
-    start_link = htmlString.find('<a href=')
-    start_quote = htmlString.find('"', start_link)
-    end_quote = htmlString.find('"', start_quote+1)
-    
-        # check if an occurence has been found
-    if start_link == -1 or start_quote == -1 or end_quote == -1 :
-        return "", -1
-        
-    print "start link"
-    url = htmlString[start_quote+1:end_quote]
-    
-    # check if url is empty
-    if not url:
-        return url, -1
-        
-    return url, end_quote
-
            
 def getLinkToPage():
     ''' fragt nach einer url '''
@@ -48,17 +28,13 @@ def makeAbsoluteLink(link, origin):
     splitOrigin = origin.split('://')
 
     protocol = ''
-    domain = ''
-    path = ''
     
     if len(splitOrigin) > 1:
         protocol = splitOrigin[0]
         
     domainAndPath = splitOrigin[1].split('/')
     domain = domainAndPath[0]
-    
-    if len(domainAndPath) > 1:
-        path.join(domainAndPath[1:],'/')
+
         
     print '-------'
     print 'origin: '
@@ -67,8 +43,6 @@ def makeAbsoluteLink(link, origin):
     print protocol
     print 'domain'
     print domain
-    print 'path:'
-    print path
     print '--------'
 
     link = protocol + '://' + domain
