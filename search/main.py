@@ -95,20 +95,6 @@ def main():
     return 0
 
 
-'''#    start by asking for a link
-    url = getLinkToPage()
-         
-      
-    print "got page " + url
- 
-#   search this page for links
-    links = crawlPage(url)
-    
-    print links
-  
-    return 0
-'''
-
 def run():
 
     # get an instance of the Controller
