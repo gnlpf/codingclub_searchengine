@@ -18,19 +18,28 @@ def main():
 """
 
 
-from Birds import Pinguin,Adler
+#from Birds import Pinguin,Adler
+from Car import Jeep
 
 def main():
-    print "****************"
+#    print "****************"
+#    
+#    pinguin = Pinguin()
+#    pinguin.tell_info()
+#    
+#    adler = Adler()
+#    adler.setKindAndFood("Adler", "Kleine Kinder")
+#    adler.setHome("Alpen")
+#    adler.setHome("Sahara")
+#    adler.tell_info()
+    auto = Jeep()
+    auto.carType = "Buik"
+    auto.color = "Pink"
+    auto.length = 5.20
+    auto.width = 2.20
     
-    pinguin = Pinguin()
-    pinguin.tell_info()
-    
-    adler = Adler()
-    adler.setKindAndFood("Adler", "Kleine Kinder")
-    adler.setHome("Alpen")
-    adler.setHome("Sahara")
-    adler.tell_info()
+    auto.printInfo()
+    auto.pull()
 
 
 if __name__ == '__main__':
