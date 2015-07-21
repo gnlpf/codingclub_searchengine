@@ -26,7 +26,6 @@ class Crawl:
         if start_link == -1 or start_quote == -1 or end_quote == -1:
             return "", -1
 
-        print "start link"
         url = htmlString[start_quote + 1:end_quote]
 
         # check if url is empty
@@ -102,8 +101,17 @@ class Crawl:
 
         return 1
 
+    def get_all_urls(self):
+        return self.to_crawl
+
     def add_url(self, url):
+        # skip if 'url' is empty
+        try:
+            url
+        except:
+            return
+
         # check if url is not already in the "toCrawl" list
         if url not in self.to_crawl:
-            print "Adding url: [%s]" % url
+            # print "Add url: [%s]" % url
             self.to_crawl.append(url)
