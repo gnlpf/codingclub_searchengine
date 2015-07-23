@@ -1,7 +1,7 @@
 __author__ = 'frosch'
 
 from Crawl import Crawl
-
+from Index import Index
 
 class Controller:
     def __init__(self):
@@ -10,8 +10,14 @@ class Controller:
     '''
     start a simple process
     by asking for an uri and search only this site / domain
-    '''
 
+    HINT:
+    this can then be optimized like
+    * scan all url's in a loop
+    * be able to define how long to scan
+        * like number of pages or time limit
+    * define if the crawler should stay on one domain only
+    '''
     def start_simple(self):
 
         # get the crawler
@@ -37,6 +43,7 @@ class Controller:
 
         # continue with parsing contents
         # TODO
+        keywords = crawler.extract_keywords()
 
         pass
 

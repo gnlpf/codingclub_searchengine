@@ -2,9 +2,8 @@
 Created on 25.06.2015
 
 @author: hohausjs
+@author: froeser
 """
-# import urllib2
-from Crawl import Crawl
 from Controller import Controller
 
 

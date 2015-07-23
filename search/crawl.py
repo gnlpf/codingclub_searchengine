@@ -2,9 +2,11 @@
 Created on 25.06.2015
 
 @author: hohausjs
+@author: froeser
 """
 import urllib2
 import urlparse
+from BeautifulSoup import BeautifulSoup as bs
 
 class Crawl:
 
@@ -115,3 +117,40 @@ class Crawl:
         if url not in self.to_crawl:
             # print "Add url: [%s]" % url
             self.to_crawl.append(url)
+
+    '''
+    extracting all keywords from the currently loaded page
+    '''
+    def extract_keywords(self):
+        # if there is an empty page, or no page, then return an empty list
+        try:
+            self.current_page
+        except:
+            return []
+
+        keywords = []
+
+        # TODO
+        # get all plain-text from website
+        soup = bs(self.current_page)
+        text = soup.body(text=True)
+        # print text
+
+        for word in text:
+            if len(word) <= 3:
+                continue
+
+            print word
+
+        # TODO
+        # split plaintext into words
+
+        # TODO
+        # dump all words who's length <= 3
+
+        # TODO (later)
+        # remove all special characters like ,;-()_?!.[]{}\|/<>*%$#=+-"'`
+
+        # TODO
+        # return remaining keywords
+        pass
