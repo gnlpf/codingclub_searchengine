@@ -122,6 +122,8 @@ class Crawl:
     extracting all keywords from the currently loaded page
     '''
     def extract_keywords(self):
+        print "start extracting keywords"
+
         # if there is an empty page, or no page, then return an empty list
         try:
             self.current_page
@@ -133,14 +135,23 @@ class Crawl:
         # TODO
         # get all plain-text from website
         soup = bs(self.current_page)
-        text = soup.body(text=True)
+        text = soup.findAll('p', text=True)
         # print text
 
         for word in text:
+            # whitespace entfernen
+            word.strip()
+
             if len(word) <= 3:
                 continue
 
-            print word
+            singlewords = word.split()
+            for w in singlewords:
+
+                if len(w) <= 3:
+                    continue
+
+                print w
 
         # TODO
         # split plaintext into words
