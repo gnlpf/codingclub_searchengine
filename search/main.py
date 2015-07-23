@@ -15,7 +15,6 @@ def getLinkToPage():
         urlInput = "http://" + urlInput
     return urlInput
 
-
 def makeAbsoluteLink(link, origin):
     # TODO
     # convert relative links, like "/kontakt.php"
@@ -51,7 +50,6 @@ def makeAbsoluteLink(link, origin):
         link = link + '/' + path
 
     return link
-
 
 def main():
     #    start by asking for a link
@@ -94,7 +92,6 @@ def main():
 
     return 0
 
-
 def run():
 
     # get an instance of the Controller
@@ -102,8 +99,6 @@ def run():
 
     print "---------------------"
     print "programm has finished\n\nGood Bye"
-
-
 
 if __name__ == '__main__':
     # main()
