@@ -1,6 +1,6 @@
 __author__ = 'frosch'
 
-from Crawl import Crawl
+from Crawler import Crawl
 from Index import Index
 
 class Controller:
